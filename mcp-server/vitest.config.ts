@@ -5,5 +5,13 @@ export default defineConfig({
     globals: true,
     root: '.',
     include: ['tests/**/*.test.ts'],
+    coverage: {
+      reporter: [
+        ['text', { maxCols: 160 }],
+        'html',
+        'clover',
+        'json',
+      ],
+    },
   },
 });
