@@ -8,6 +8,7 @@ export default defineConfig({
     coverage: {
       reporter: [
         ['text', { maxCols: 160 }],
+        'text-summary',
         'html',
         'clover',
         'json',
