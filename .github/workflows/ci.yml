@@ -45,18 +45,9 @@ jobs:
             echo
             echo '```text'
             if [[ -f "$RUNNER_TEMP/vitest-coverage.txt" ]]; then
-              sed -n '/% Coverage report from v8/,$p' "$RUNNER_TEMP/vitest-coverage.txt"
+              sed -E 's/\x1B\[[0-9;]*m//g; /Coverage report from v8/,$!d' "$RUNNER_TEMP/vitest-coverage.txt"
             else
               echo "Coverage report was not generated."
             fi
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Upload coverage report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: vitest-coverage
-          path: mcp-server/coverage
-          if-no-files-found: ignore
-          retention-days: 14
