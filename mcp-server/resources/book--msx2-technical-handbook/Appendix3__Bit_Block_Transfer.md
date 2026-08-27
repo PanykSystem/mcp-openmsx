@@ -7,9 +7,11 @@ The bit block transfer corresponds to the COPY command in BASIC and is used to t
 
 ## Index
 
-- [1. Transferring in VRAM](#1-transferring-in-vram)
-- [2. Transferring data between RAM and VRAM](#2-transferring-data-between-ram-and-vram)
-- [3. Transferring between the disk and RAM or VRAM](#3-transferring-between-the-disk-and-ram-or-vram)
+[1. Transferring in VRAM](#1-transferring-in-vram)
+
+[2. Transferring data between RAM and VRAM](#2-transferring-data-between-ram-and-vram)
+
+[3. Transferring between the disk and RAM or VRAM](#3-transferring-between-the-disk-and-ram-or-vram)
 
 
 <p>&nbsp;</p>
@@ -54,7 +56,6 @@ For disk or RAM, data to indicate the size is added as the array data. The first
 <p>&nbsp;</p>
 
 #### BLTVM (0195H/SUB)
-
 * **Function**: transfers the array to VRAM
 * **Input**: 
   * HL register ⟵ F562H
@@ -75,7 +76,6 @@ For disk or RAM, data to indicate the size is added as the array data. The first
 <p>&nbsp;</p>
 
 #### BLTMV (0199H/SUB)
-
 * **Function**: transfers to the array from VRAM
 * **Input**: 
   * HL register ⟵ F562H
@@ -88,7 +88,7 @@ For disk or RAM, data to indicate the size is added as the array data. The first
     * NY (F56CH, 2): number of dots in the Y direction
     * CDUMMY (F56EH, 1): dummy (not required to be set)
     * ARG (F56FH, 1): selects the direction and expansion RAM (same as VDP R#45)
-* **Output**:   the CY flag is reset
+* **Output**: the CY flag is reset
 * **Registers**: all
 
 
@@ -129,14 +129,13 @@ When an error occurs, control jumps to the error handler of the BASIC interprete
     * CDUMMY (F56EH, 1): dummy (not required to be set)
     * ARG (F56FH, 1): selects the direction and expansion RAM (same as VDP R#45)
     * LOGOP (F570H, 1): logical operation code (same as the logical operation code of VDP)
-* **Output**:   the CY flag is set when there is an error in the parameter
+* **Output**: the CY flag is set when there is an error in the parameter
 * **Registers**: all
 
 
 <p>&nbsp;</p>
 
 #### BLTDV (01A1H/SUB)
-
 * **Function**: transfers from VRAM to disk
 * **Input**:
   * HL register ⟵ F562H
@@ -155,7 +154,6 @@ When an error occurs, control jumps to the error handler of the BASIC interprete
 <p>&nbsp;</p>
 
 #### BLTMD (01A5H/SUB)
-
 * **Function**: loads array data from disk
 * **Input**:
   * HL register ⟵ F562H

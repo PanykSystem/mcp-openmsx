@@ -14,18 +14,29 @@ This chapter introduces the use of the slot and information necessary to connect
 
 ## Index
 
-- [7. SLOTS AND CARTRIDGES](#7-slots-and-cartridges)
-- [7.1 Slots](#71-slots)
-- [7.1.1 Basic slot and expansion slot](#711-basic-slot-and-expansion-slot)
-- [7.1.2 Selecting slots](#712-selecting-slots)
-- [7.2 Inter-slot Calls (calls between slots)](#72-inter-slot-calls-calls-between-slots)
-- [7.2.1 Inter-slot call operation](#721-inter-slot-call-operation)
-- [7.2.2 Inter-slot call use](#722-inter-slot-call-use)
-- [7.2.3 Work area to obtain the slot status](#723-work-area-to-obtain-the-slot-status)
-- [7.3 Developing Cartridge Software](#73-developing-cartridge-software)
-- [7.3.1 Catridge header](#731-catridge-header)
-- [7.3.2 notes on the creation of the cartridge software](#732-notes-on-the-creation-of-the-cartridge-software)
-- [Changes from the original](#changes-from-the-original)
+[7. SLOTS AND CARTRIDGES](#7-slots-and-cartridges)
+
+[7.1 Slots](#71-slots)
+
+[7.1.1 Basic slot and expansion slot](#711-basic-slot-and-expansion-slot)
+
+[7.1.2 Selecting slots](#712-selecting-slots)
+
+[7.2 Inter-slot Calls (calls between slots)](#72-inter-slot-calls-calls-between-slots)
+
+[7.2.1 Inter-slot call operation](#721-inter-slot-call-operation)
+
+[7.2.2 Inter-slot call use](#722-inter-slot-call-use)
+
+[7.2.3 Work area to obtain the slot status](#723-work-area-to-obtain-the-slot-status)
+
+[7.3 Developing Cartridge Software](#73-developing-cartridge-software)
+
+[7.3.1 Catridge header](#731-catridge-header)
+
+[7.3.2 notes on the creation of the cartridge software](#732-notes-on-the-creation-of-the-cartridge-software)
+
+[Changes from the original](#changes-from-the-original)
 
 
 <p>&nbsp;</p>
@@ -888,7 +899,7 @@ See the following list for the reference of (2) and (3).
 ;              for ROM in 1 page
 ;********************************************************
 
-RSLGREG EQU     0138H
+RSLREG  EQU     0138H
 EXPTBL  EQU     0FCC1H
 BOTTOM  EQU     0FC48H
 HIMEM   EQU     0FC4AH
@@ -923,7 +934,7 @@ GETSL10:
         LD      E,A
         LD      D,0             ;[DE]=000000PP
         LD      HL,EXPTBL
-        ADD     HL,DE           :[HL]=EXPTBL+000000PP
+        ADD     HL,DE           ;[HL]=EXPTBL+000000PP
         LD      E,A             ;[E]=000000PP
         LD      A,(HL)          ;A=(EXPTBL+000000PP)
         AND     80H             ;Use only MSB
@@ -962,9 +973,9 @@ GTSL1NOEXP:
 ASLW10:
         PUSH    DE
         PUSH    AF
-        CALL    GTSL10          ;[A] = F000SSPP, SS = 00 if not expanded
+        CALL    GETSL10         ;[A] = F000SSPP, SS = 00 if not expanded
         AND     00001111B       ;[A] = 0000SSPP
-        LD      L,A             :[A] = 0000SSPP
+        LD      L,A             ;[A] = 0000SSPP
         RLCA
         RLCA
         RLCA
